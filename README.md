@@ -23,3 +23,26 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Maven  
 - Docker
 - Postman (testar a API)
+
+Crie um Docker-compose.yaml para subir o microserviço e o mongodb no docker:    
+services:
+  trataerror:
+    container_name: trataerros
+    build:
+      context: ./trataerros
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
